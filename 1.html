@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exso Pro - Защита нового поколения</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #0a192f;
+            color: #ffffff;
+            position: relative;
+        }
+
+        /* Стили для информационного меню */
+        .info-menu {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(16, 42, 88, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            width: 600px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+            .info-menu.active {
+                display: block;
+                animation: fadeIn 0.3s ease;
+            }
+
+        .info-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: #00b4d8;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.3);
+        }
+
+        .nav-button {
+            padding: 1.2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #00b4d8;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+            .nav-button:hover {
+                background: #00b4d8;
+                transform: translateY(-2px);
+            }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            background: linear-gradient(45deg, #0a192f 0%, #1a365f 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #00b4d8, #90e0ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #ccd6f6;
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #00b4d8;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .visual {
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .dashboard-img {
+            width: 100%;
+            height: auto;
+            border-radius: 30px;
+            transform: rotateY(-20deg) rotateX(10deg);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .info-menu {
+                width: 90%;
+                padding: 1.5rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .nav-button, .download-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="info-menu" id="infoMenu">
+        <span class="info-close" onclick="toggleMenu()">×</span>
+        <h2 style="color: #00b4d8; margin-bottom: 1rem;">Что такое Exso Pro Antivirus?</h2>
+        <p style="line-height: 1.6; color: #ccd6f6;">
+            Exso Pro - это революционная система кибербезопасности с искусственным интеллектом,
+            обеспечивающая комплексную защиту в режиме реального времени. Основные возможности:
+        </p>
+        <ul style="margin: 1rem 0; color: #ccd6f6; padding-left: 1.5rem;">
+            <li style="margin: 0.8rem 0;">🛡️ Многоуровневая защита от вирусов и вредоносных программ</li>
+            <li style="margin: 0.8rem 0;">🔍 AI-анализ угроз в реальном времени</li>
+            <li style="margin: 0.8rem 0;">🌐 Встроенный VPN с военным уровнем шифрования</li>
+            <li style="margin: 0.8rem 0;">⚡ Оптимизация системы и игровой режим</li>
+            <li style="margin: 0.8rem 0;">📱 Защита для всех устройств</li>
+        </ul>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="grid">
+                <div class="content">
+                    <h1>Exso Pro</h1>
+                    <p class="subtitle">Передовая защита нового поколения для вашей цифровой безопасности</p>
+
+                    <div class="button-group">
+                        <a href="ExsoProSetup.exe" download="ExsoPro_Installer.exe" class="download-btn">
+                            Скачать бесплатно
+                        </a>
+                        <button class="nav-button" onclick="toggleMenu()">Exso Pro</button>
+                    </div>
+
+                    <div class="features">
+                        <div class="feature-card">
+                            <div class="feature-icon">🛡️</div>
+                            <h3>Антивирус</h3>
+                            <p>Многоуровневая защита от всех типов угроз</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔒</div>
+                            <h3>VPN</h3>
+                            <p>Защищенное соединение с любыми сайтами</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🚀</div>
+                            <h3>Оптимизация</h3>
+                            <p>Ускорение работы системы до 40%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual">
+                    <img src="https://via.placeholder.com/600x400" alt="Интерфейс Exso Pro" class="dashboard-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('infoMenu');
+            menu.classList.toggle('active');
+
+            if (menu.classList.contains('active')) {
+                document.addEventListener('click', closeMenuOutside);
+            } else {
+                document.removeEventListener('click', closeMenuOutside);
+            }
+        }
+
+        function closeMenuOutside(event) {
+            const menu = document.getElementById('infoMenu');
+            if (!menu.contains(event.target) && !event.target.classList.contains('nav-button')) {
+                menu.classList.remove('active');
+                document.removeEventListener('click', closeMenuOutside);
+            }
+        }
+    </script>
+</body>
+</html>
